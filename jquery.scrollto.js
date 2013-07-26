@@ -7,8 +7,22 @@
  * 2013/02/17
  **/
 (function ($) {
-    $.scrollTo = $.fn.scrollTo = function(x, y, options){
-        if (!(this instanceof $)) return $.fn.scrollTo.apply($('html, body'), arguments);
+    $.scrollTo = $.fn.scrollTo = function(){
+        var _args = Array.prototype.slice.call(arguments),
+            x = _args[0],
+            y = _args[1],
+            options = _args[2],
+            offset = null;
+
+        if (!(this instanceof $)){
+            return $.fn.scrollTo.apply($('html, body'), _args);
+        }
+
+        if(typeof x === "string"){
+            offset = $(x).offset();
+            x = offset.left;
+            y = offset.top;
+        }
 
         options = $.extend({}, {
             gap: {
@@ -32,3 +46,4 @@
         });
     };
 })(jQuery);
+
