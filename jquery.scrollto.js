@@ -18,6 +18,7 @@
             return $.fn.scrollTo.apply($('html, body'), _args);
         }
 
+        //just add a line of doc, to try a new git client
         if(typeof x === "string"){
             offset = $(x).offset();
             x = offset.left;
